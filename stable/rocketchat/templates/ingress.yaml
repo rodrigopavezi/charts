@@ -14,6 +14,9 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
+  backend:
+    serviceName: {{ template "rocketchat.fullname" . }}
+    servicePort: http
 {{- if $ingress.tls }}
   tls:
   {{- range $ingress.tls }}
